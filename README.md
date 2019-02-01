@@ -1,6 +1,6 @@
 # UCSD-ECE276A-Sensing-Estimation-in-Robotics
 
-blue_detector.py
+barrel_detector.py
 
 Contains my implementation for segmenting the images and determining the bbox coordinates. The parameters of the model are initialized to the values obtained during training, which are found in the following python notebook.
 
