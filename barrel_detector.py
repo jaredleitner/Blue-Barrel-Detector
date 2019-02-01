@@ -78,19 +78,17 @@ class BarrelDetector():
         kernel = np.ones((5,5),np.uint8)
         my_mask = cv2.morphologyEx(my_mask,cv2.MORPH_OPEN, kernel)
         my_mask = cv2.morphologyEx(my_mask, cv2.MORPH_CLOSE, kernel)
-        
         my_mask = cv2.dilate(my_mask,kernel,iterations = 5)
         my_mask = cv2.erode(my_mask,kernel,iterations = 5)
                 
-        
         #remove shapes with small area
-        img2, cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)      
+        cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)      
         for c in cc:
             if cv2.contourArea(c) < 500:
                 my_mask = cv2.fillPoly(my_mask, pts = [c], color=(0,0,0))
 
         #check aspect ratio
-        img2, cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  
+        cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  
         for c in cc:       
             x,y,w,h = cv2.boundingRect(c)
             aspect_ratio_1 = float(w)/h
@@ -99,7 +97,7 @@ class BarrelDetector():
                 my_mask = cv2.fillPoly(my_mask, pts =[c], color=(0,0,0))
               
         boxes = []
-        img2, cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)        
+        cc, hierarchy = cv2.findContours(my_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)        
         for c in cc:              
             x,y,w,h = cv2.boundingRect(c)
             boxes.append([x,y,x+w,y+h])
