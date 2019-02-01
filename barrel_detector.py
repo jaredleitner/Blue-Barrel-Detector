@@ -93,7 +93,7 @@ class BarrelDetector():
             x,y,w,h = cv2.boundingRect(c)
             aspect_ratio_1 = float(w)/h
             aspect_ratio_2 = float(h)/w
-            if aspect_ratio_1 > 0.7 or aspect_ratio_2 > 3:
+            if aspect_ratio_1 > 1 or aspect_ratio_2 > 3:
                 my_mask = cv2.fillPoly(my_mask, pts =[c], color=(0,0,0))
               
         boxes = []
