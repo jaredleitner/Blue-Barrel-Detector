@@ -1,4 +1,4 @@
-# UCSD-ECE276A-Sensing-Estimation-in-Robotics
+# Blue Barrel Detector
 
 barrel_detector.py
 
